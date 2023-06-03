@@ -1,0 +1,20 @@
+{
+  "name": "bitnoise-scope",
+  "version": "1.0.0",
+  "description": "Bitnoise Scope",
+  "scripts": {
+    "build": "cd frontend && yarn && yarn build && cd ../backend && yarn && yarn build",
+    "start": "cd backend && cross-env NODE_ENV=production yarn start",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cross-env NODE_ENV=development concurrently \"cd backend && yarn dev\" \"cd frontend && yarn start\""
+  },
+  "engines": {
+    "node": "16.13.x"
+  },
+  "author": "SVG",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.0.1",
+    "cross-env": "^7.0.3"
+  }
+}

@@ -1,0 +1,8 @@
+Violet: Viewer
+Adam: Author
+
+As Violet, I want to be impressed with a beautiful self-generating picture on my entry into the site, so that my interest is piqued to see more pictures. 
+
+As Violet, after having been impressed with a mandala, I want to see a gallery of all pictures. 
+
+As Adam, I'd like to have the opportunity to make my own mandala, so that I can use it as my content on a social network or share it with my friends.  

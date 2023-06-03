@@ -1,0 +1,22 @@
+- New mandala, update mandala, delete mandala don't update the state
+- On load, select an existing mandala if possible / alternatively, design a "no current mandala selected" screen
+- Mandala selection looks like shit 
+- In fact, the whole app looks kinda terrible - take out the jokes
+- Highlight crashed layer on error
+- clear canvas button doesn't work 
+- awful mandala/layers state interplay
+
+- additional/customizable seeds (clock, periodic random, smooth random, more websocks)
+- implement customizable seed as modifiable code 
+- IDs for mandalas and layers to more easily rename 
+- documentation, examples, code comments, utility functions (e.g. clamp, hash), more variables (e.g. width/height of canvas)
+- some sort of export -- gif, webm
+- check possibility of working on mobile
+- think about domain-specific language for security
+
+- cheshire cat eyes wandering around the room 
+- starry night
+- the monk wandering by the sea
+- atomic nucleus
+- the schematic 
+- witchcraft circles
