@@ -2,7 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import { MandalaState } from '../types';
 import { setExampleMandalas, setMyMandalas } from './actions';
 
-const initialState: MandalaState = {
+export const initialState: MandalaState = {
     mine: [],
     examples: [],
 }

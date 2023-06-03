@@ -2,7 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import { SignalSourcesState } from '../types';
 import { setExampleSignalSources, setMySignalSources } from './actions';
 
-const initialState: SignalSourcesState = {
+export const initialState: SignalSourcesState = {
     mine: [],
     examples: [],
 }

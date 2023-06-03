@@ -1,3 +1,5 @@
+import { PropType, SignalContainer } from '../redux/types';
+
 type SignalSource<T, P> = (castSignal: (signal: T) => void, props: P) => void;
 
 const wrapCode = (code: string) => `
@@ -9,27 +11,9 @@ try {
     _onError(err)
 }
 `;
-
-enum PropType {
-    STRING = 'string',
-    NUMBER = 'number'
-}
-
-type PropInstance = {
-    name: string,
-    type: PropType,
-    def: any,
-}
-
-type SignalContainer = {
-    name: string;
-    id: string;
-    code: string;
-    props: Array<PropInstance>;
-}
-
-const randomRangePerSeconds: SignalContainer = {
+export const randomRangePerSeconds: SignalContainer = {
     name: 'Random range per seconds',
+    description: 'Generate a number within a given range every X seconds (can be less than 1)',
     id: 'random-range-per-seconds',
     code: '\
 const randomRangePerSeconds = (castSignal, props) => {\n\
@@ -53,27 +37,7 @@ return randomRangePerSeconds;\n\
     ]
 }
 
-class SignalInstance<TProps, TSeedType> {
-    _fn: (onSignal: (seed: TSeedType) => void, props: TProps) => () => void;
-    start: (props: TProps) => void;
-    end: () => void;
-    constructor(container: SignalContainer, onSignal: (seed: TSeedType) => void, onError: (msg: string) => void){
-        try {
-            this._fn = new Function(wrapCode(container.code)).bind({_onError: onError})();
-        } catch(e: any) {
-            this._fn = () => () => {};
-            onError(e.message)
-        }
-        this.start = (props) => {
-            try {
-                this.end = this._fn(onSignal, props);
-            } catch(e: any) {
-                onError(e.message)
-            }
-        }
-        this.end = () => {}
-    }
-}
+
 
 type DigitsPerSecondsProps = {
     min: number,
@@ -81,13 +45,4 @@ type DigitsPerSecondsProps = {
     seconds: number,
 }
 
-export const attemptTheImpossible = () => {
-    const onSignal = (seed: any) => {
-        console.log('received seed', seed)
-    }
-    const onError = (message: string) => {
-        console.warn('error', message);
-    }
-    const rangeInstance = new SignalInstance<DigitsPerSecondsProps, string>(randomRangePerSeconds, onSignal, onError);
-    rangeInstance.start({min: 0, max: 1000, seconds: 1});
-}
+export default randomRangePerSeconds;

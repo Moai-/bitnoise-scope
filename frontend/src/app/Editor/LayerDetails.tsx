@@ -8,8 +8,6 @@ import { useState } from 'react';
 const LayerDetails = () => {
     const { currentLayer } = useEditorSelector();
 
-
-
     const dispatch = useDispatch();
 
     const open = () => {

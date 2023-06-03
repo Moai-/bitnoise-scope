@@ -2,7 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import { EditorState } from '../types';
 import { setCurrentLayer, setMandala, setShowSignalSelector } from './actions';
 
-const initialState: EditorState = {
+export const initialState: EditorState = {
     mandala: null,
     layers: [],
     currentLayer: null,
