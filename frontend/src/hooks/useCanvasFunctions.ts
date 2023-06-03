@@ -2,6 +2,7 @@ import React, { useEffect, useState, useMemo } from 'react'
 import useWebsocket from './useWebsocket';
 import { useCanvasContext } from '../context/canvas';
 import { useEditorSelector } from '../redux/selectors';
+import { SignalContainer } from '../redux/types';
 
 const SETUP = 'SETUP'
 
@@ -16,6 +17,28 @@ try {
     _onError(err)
 }
 `;
+
+class SignalInstance<TProps, TSeedType> {
+    _fn: (onSignal: (seed: TSeedType) => void, props: TProps) => () => void;
+    start: (props: TProps) => void;
+    end: () => void;
+    constructor(container: SignalContainer, onSignal: (seed: TSeedType) => void, onError: (msg: string) => void){
+        try {
+            this._fn = new Function(wrapCode(container.code)).bind({_onError: onError})();
+        } catch(e: any) {
+            this._fn = () => () => {};
+            onError(e.message)
+        }
+        this.start = (props) => {
+            try {
+                this.end = this._fn(onSignal, props);
+            } catch(e: any) {
+                onError(e.message)
+            }
+        }
+        this.end = () => {}
+    }
+}
 
 const useCanvasFunctions = (canvasRef?: React.RefObject<HTMLCanvasElement>) => {
     const [didPlay, setDidPlay] = useState(false);
